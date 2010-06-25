@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QUnit Test Suite</title>
+	<link rel="stylesheet" href="../qunit/qunit.css" type="text/css" media="screen">
+	<script type="text/javascript" src="externals/jquery.js"></script>
+	<script type="text/javascript" src="../qunit/qunit.js"></script>
+	<script type="text/javascript" src="../src/sinko.js"></script>
+
+	<script type="text/javascript" src="test_sanity.js"></script>
+	<script type="text/javascript" src="test_sync_inwards.js"></script>
+	<script type="text/javascript" src="test_sync_outwards.js"></script>
+</head>
+<body>
+	<h1 id="qunit-header">QUnit Test Suite</h1>
+	<h2 id="qunit-banner"></h2>
+	<div id="qunit-testrunner-toolbar"></div>
+	<h2 id="qunit-userAgent"></h2>
+	<ol id="qunit-tests"></ol>
+
+
+	<!-- test markup -->
+
+	<div id="syncing">
+		<p id="animal_name">Dog</p>
+		<input id="animal_field_input" value="Cat" />
+		<select id="animal_field_select">
+			<option value="Sheep" selected="selected">Sheep</option>
+		</select>
+	</div>
+
+	<div id="syncing_out">
+		<p id="animal_name_out"></p>
+	</div>
+
+	<!-- /test markup -->
+</body>
+</html>
