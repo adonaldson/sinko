@@ -1,13 +1,11 @@
-JS_REST (For want of a better name).
+Sinko -- Syncing javascript to stuff
 
-Problem:
-It can be a right pain to make sure the UI stays in sync with the appication state once JS is more heavily used in your app.
+Concept: Create an object in JS, apply 'sinko' to it. Tell sinko how to populate the object's properties (it could be from markup, from a function, etc) then work as normal with the object. Once you've made changes to the object, everything that needs to be updated is updated (again, markup could be changed to reflect the objects new state, or a function could be called).
 
-Proposed solution:
-Provide a simple way to create classes in JS that represent the models in your application and provide access to CRUD actions. Additionally provide a means to trigger code to run when your model is updated.
+Still very very early days, but has a (growing) test suite! 
 
-For more information (in the mean time) see:
-http://github.com/dies-el/js_rest_example
+MAIN PROBLEM SO FAR:
+My JS knowledge is still far from ideal and I'm struggling to figure out how i can make 'sinko' (the function thats transplanted onto the host object) an instance rather than a static. See the failing test in test/index.html
 
 Licensed under MIT (see MIT-LICENSE.txt)
 
