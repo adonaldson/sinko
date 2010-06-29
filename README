@@ -2,7 +2,11 @@ Sinko -- Syncing javascript to stuff
 
 Concept: Create an object in JS, apply 'sinko' to it. Tell sinko how to populate the object's properties (it could be from markup, from a function, etc) then work as normal with the object. Once you've made changes to the object, everything that needs to be updated is updated (again, markup could be changed to reflect the objects new state, or a function could be called).
 
-Still very very early days, but has a (growing) test suite! 
+Still very very early days, but has a (growing) test suite! The tests (linked in test/index.html) are probably the best documentation at the moment.
+
+To build the source into a minified.js, just run 'rake' in the checked out folder.
+
+(minifying rake task pinched from @i_am_cam / http://github.com/cameronyule/github-api.js, ta!)
 
 Licensed under MIT (see MIT-LICENSE.txt)
 
