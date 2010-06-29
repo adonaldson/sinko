@@ -4,9 +4,6 @@ Concept: Create an object in JS, apply 'sinko' to it. Tell sinko how to populate
 
 Still very very early days, but has a (growing) test suite! 
 
-MAIN PROBLEM SO FAR:
-My JS knowledge is still far from ideal and I'm struggling to figure out how i can make 'sinko' (the function thats transplanted onto the host object) an instance rather than a static. See the failing test in test/index.html
-
 Licensed under MIT (see MIT-LICENSE.txt)
 
 Copyright (c) 2010 Andrew Donaldson http://dies-el.co.uk/

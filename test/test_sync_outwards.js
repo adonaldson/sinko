@@ -6,6 +6,9 @@ module("Syncing markup from host object", {
     this.host.sinko.ins('animal_name', "#syncing #animal_name");
     this.host.sinko.sync_in();
     ok(this.host.animal_name == "Dog", "Setup successful");
+  },
+  teardown: function() {
+    this.host = undefined;
   }
 });
 
