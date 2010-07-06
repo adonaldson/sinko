@@ -66,6 +66,11 @@ var SinkoInstance = function(source) {
     }
   };
 
+  my.sync = function() {
+    my.sync_in();
+    my.sync_out();
+  };
+
   return my;
 }
 
