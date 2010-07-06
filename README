@@ -4,6 +4,10 @@ Concept: Create an object in JS, apply 'sinko' to it. Tell sinko how to populate
 
 Still very very early days, but has a (growing) test suite! The tests (linked in test/index.html) are probably the best documentation at the moment.
 
+For those that want to just unzip and run, theres a dirrrty example application I threw together.
+-- http://github.com/downloads/dies-el/sinko/sandbox_for_sinko.zip
+   (see javascripts/sinko_experiments.js)
+
 To build the source into a minified.js, just run 'rake' in the checked out folder.
 
 (minifying rake task pinched from @i_am_cam / http://github.com/cameronyule/github-api.js, ta!)
