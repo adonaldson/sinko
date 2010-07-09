@@ -7,13 +7,19 @@ var SinkoInstance = function(source) {
 
   my._source = source;
 
-  var value_from_selector = function(selector) {
-    var source_element = $(selector);
+  var value_from_selector = function(selector, context) {
+    var source_element = Sinko.find(selector, context);
 
-    if (source_element.is(":input"))
-      return source_element.val();
-    else
-      return source_element.html();
+    if (source_element[0]) {
+      switch (source_element[0].tagName) {
+        case 'INPUT':
+        case 'SELECT':
+        case 'TEXTAREA':
+          return source_element[0].value;
+        default:
+          return source_element[0].innerHTML;
+      }
+    }
   };
 
   my.ins = function(property, source) {
@@ -47,13 +53,16 @@ var SinkoInstance = function(source) {
         case 'function':
           my._source[property] = _ins[property].apply(my._source);
           break;
-
         case 'string':
           my._source[property] = value_from_selector(_ins[property]);
           break;
         case 'object':
-          if (_ins[property].length > 0)
-            my._source[property] = value_from_selector(_ins[property]);
+          if (_ins[property].length > 0) {
+            if (Sinko.selector_library == 'jquery') 
+              my._source[property] = value_from_selector(_ins[property]);
+            else
+              my._source[property] = value_from_selector(_ins[property].selector)
+          }
           break
       }
     }
@@ -75,10 +84,45 @@ var SinkoInstance = function(source) {
 }
 
 var Sinko = (function (my) {
+    my.available_selector_libraries = (function() {
+      var available_libraries = [];
+
+      if (typeof(Sizzle) != 'undefined') {
+        available_libraries.push('sizzle');
+        }
+
+      if (typeof(jQuery) != 'undefined') {
+        available_libraries.push('jquery');
+        }
+
+      return available_libraries;
+    }());
+
+    my.defaults = {
+      selector_library: my.available_selector_libraries[0]
+    };
 
     my.init = function(o) {
       o.sinko = SinkoInstance(o);
     };
+
+    my.find = (function() {
+      var find_using_sizzle = function(selector, context) {
+        return Sizzle(selector, context);
+      };
+      var find_using_jquery = function(selector, context) {
+        return jQuery(selector, context);
+      };
+
+      return function(selector, context) {
+        switch(my.defaults.selector_library) {
+          case 'sizzle':
+            return find_using_sizzle(selector, context);
+          case 'jquery':
+            return find_using_jquery(selector, context);
+        }
+      };
+    }());
 
     return my; 
 }(Sinko || {}));

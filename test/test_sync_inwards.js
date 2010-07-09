@@ -29,6 +29,10 @@ test("will populate it's host from a css string from the elements val() if it's 
   host.sinko.ins('animal_name', "#syncing #animal_field_select");
   host.sinko.sync_in();
   ok(host.animal_name == "Sheep", "Host value was not correctly set from a select element");
+
+  host.sinko.ins('animal_name', "#syncing #animal_field_textarea");
+  host.sinko.sync_in();
+  ok(host.animal_name == "Duck", "Host value was not correctly set from a textarea");
 });
 
 test("will populate it's host from a jQuery object from the elements val() if it's a form field", function() {
