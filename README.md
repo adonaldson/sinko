@@ -1,8 +1,8 @@
-# Sinko -- Syncing javascript to stuff
+# Sinko: Syncing javascript to stuff
 
-Concept: Create an object in JS, apply 'sinko' to it. Tell sinko how to populate the object's properties (it could be from markup, from a function, etc) then work as normal with the object. Once you've made changes to the object, everything that needs to be updated is updated (again, markup could be changed to reflect the objects new state, or a function could be called).
+Build your object in JS. Sync it in from $source, Sync it out to $destination.
 
-<a href="https://github.com/dies-el/sinko/tree/master/test">The tests</a> are probably the best documentation at the moment.
+<a href="https://github.com/dies-el/sinko/tree/master/test">The tests</a> are probably the most thorough documentation at the moment. See below for usage.
 
 ## Requirement:
 * jQuery or Sizzle
