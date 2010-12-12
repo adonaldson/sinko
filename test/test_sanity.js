@@ -1,16 +1,16 @@
 module("Sanity check");
 
 test("Ensure module exists", function() {
-  ok(Sinko != undefined, "Sinko is not defined");
+  ok(Sinko !== undefined, "Sinko is not defined");
 });
 
-module("Initalising")
+module("Initalising");
 
 test("will create a 'sinko' property on the host object", function() {
   var host = {};
   Sinko.init(host);
 
-  ok(host.sinko != undefined, "'sinko' property has not been set on host object");
+  ok(host.sinko !== undefined, "'sinko' property has not been set on host object");
 });
 
 test("will allow 'sinko' to exist on many objects at once and not conflict", function() {

@@ -75,3 +75,42 @@ test("will remove the sink if undefined is passed in", function() {
 
   ok(host.animal_name == undefined);
 });
+
+// I can't think of a better name for this than 'base sync'
+test("will populate the host entirely from one function (base sync)", function() {
+  var host = {};
+  Sinko.init(host);
+
+  host.sinko.ins(function() {
+    this.animal_name = 'fish';
+    this.animal_noise = 'glug';
+  });
+  host.sinko.sync_in();
+
+  ok(host.animal_name === 'fish', 'host property does not matched synced value');
+});
+
+test("specific 'ins' will always take presidence over the base sync in", function() {
+  var host = {};
+  Sinko.init(host);
+
+  host.sinko.ins('animal_name', function() { return 'Goat'; });
+
+  host.sinko.ins(function() {
+    this.animal_name = 'fish';
+    this.animal_noise = 'glug';
+  });
+
+  host.sinko.sync_in();
+
+  ok(host.animal_name === 'Goat', 'host property does not matched synced value');
+});
+
+test("if you try to set up an 'in' with the _base_sync internal name, throw an error", function() {
+  var host = {};
+  Sinko.init(host);
+
+  raises(function() {
+    host.sinko.ins('_base_sync', function() { return 'Explosion!'; });
+  }, 'should raise error');
+});

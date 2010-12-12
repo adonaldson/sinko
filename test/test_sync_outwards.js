@@ -14,48 +14,48 @@ module("Syncing markup from host object", {
 });
 
 test("will execute a callback when sync_out'ing)", function() {
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name) }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name); }); 
   this.host.sinko.sync_out();
 
   var animal_name_out = $("#syncing_out #animal_name_out").html();
-  ok(animal_name_out == this.host.animal_name, "element value was correctly set to the host value");
+  ok(animal_name_out == this.host.animal_name, "element value was not correctly set to the host value");
 });
 
 test("will execute multiple callbacks when sync_out'ing", function() {
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name) }); 
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").attr("class", this.animal_name) }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name); }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").attr("class", this.animal_name); }); 
   this.host.sinko.sync_out();
 
   var animal_name_out = $("#syncing_out #animal_name_out");
-  ok(animal_name_out.html() == this.host.animal_name, "first callback set value");
-  ok(animal_name_out.attr('class') == this.host.animal_name, "second callback set value")
+  ok(animal_name_out.html() == this.host.animal_name, "first callback did not set value");
+  ok(animal_name_out.attr('class') == this.host.animal_name, "second callback did not set value");
 });
 
 test("will allow the user to retrieve an array of the callbacks", function() {
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name) }); 
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").attr("class", this.animal_name) }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name); }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").attr("class", this.animal_name); }); 
 
   var outs = this.host.sinko.outs('animal_name');
 
-  ok(outs.length == 2, "callback queue is the correct length");
+  ok(outs.length == 2, "callback queue is not the expected length");
 });
 
 test("will allow the user to manipulate the array of callbacks", function() {
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name) }); 
-  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").attr("class", this.animal_name) }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").html(this.animal_name); }); 
+  this.host.sinko.outs('animal_name', function() { $("#animal_name_out").attr("class", this.animal_name); }); 
 
   var outs = this.host.sinko.outs('animal_name');
   outs.pop();
 
   this.host.sinko.outs('animal_name', outs);
 
-  ok(this.host.sinko.outs('animal_name').length == 1, "callback queue was manipulated");
+  ok(this.host.sinko.outs('animal_name').length == 1, "callback queue was not manipulated as expected");
 
   this.host.sinko.sync_out();
   
   var animal_name_out = $("#syncing_out #animal_name_out");
-  ok(animal_name_out.attr('class') != this.host.animal_name, 'second callback did not change the class');
-  ok(animal_name_out.html() == this.host.animal_name, 'first callback set the animal name');
+  ok(animal_name_out.attr('class') != this.host.animal_name, 'second callback was called unexpectedly');
+  ok(animal_name_out.html() == this.host.animal_name, 'first callback set the animal name unexpectedly');
 });
 
 module("End of Syncing markup from host object");
